@@ -1,0 +1,4 @@
+# Make build artifacts
+/hashi
+/src/*.o
+/src/*.d
