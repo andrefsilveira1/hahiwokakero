@@ -50,7 +50,7 @@ int Grid::getMaxConnections() const {
     return maxConnections / 2;
 }
 
-void Grid::printGrid() const {
+void Grid::printGridInfo() const {
     for (const auto& island : grid_) {
         std::cout << "Island ID: " << island.getId() 
                   << ", Position: (" << island.getPosition().x 
@@ -60,5 +60,24 @@ void Grid::printGrid() const {
                   << std::endl;
     }
 }
+
+void Grid::printGrid() const {
+    std::cout << "Grid Size: " << size_ << "x" << size_ << std::endl;
+    for (int y = 0; y < size_; ++y) {
+        for (int x = 0; x < size_; ++x) {
+            bool found = false;
+            for (const auto& island : grid_) {
+                if (island.getPosition().x == x && island.getPosition().y == y) {
+                    std::cout << island.getId() << " ";
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                std::cout << ". ";
+            }
+        }
+        std::cout << std::endl;
+    }
 
 } // namespace hashiwokakero

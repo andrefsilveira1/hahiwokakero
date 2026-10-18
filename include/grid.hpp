@@ -6,13 +6,13 @@ namespace hashiwokakero {
 
 class Grid {
 public:
-    // The caller supplies the puzzle's islands; Grid owns a copy of them.
     Grid(int size, std::vector<Island> islands);
 
     int getSize() const;
     int getVerticesCount() const;
 
     int getMaxConnections() const;
+    void printGridInfo() const;
     void printGrid() const;
 
 private:
