@@ -1,23 +1,22 @@
-#include <iostream>
-#include <utility>
-#include <vector>
-#include "grid.hpp"
+#include "board.hpp"
+#include "render.hpp"
 
-constexpr bool DEBUG = false;
+#include <iostream>
+#include <sstream>
+#include <vector>
 
 int main() {
-    using namespace hashiwokakero;
-    
-    // Coordinates are zero-based: a 5x5 board spans x,y = 0..4.
-    std::vector<Island> islands;
-    islands.emplace_back(0, Position{0, 1}, 2);
-    islands.emplace_back(1, Position{3, 1}, 2);
-    
-    Grid grid(5, std::move(islands));
+    using namespace new_base;
 
-    if (DEBUG) {
-        grid.printGridInfo();
-    } else {
-        grid.printGrid();
+    std::istringstream quick_example("3 1 0\n1 0 1\n");
+    std::istream* input = &std::cin;
+    if (!(std::cin >> m >> n >> qi)) {
+        input = &quick_example;
+        *input >> m >> n >> qi;
     }
+    qi = 0;
+    std::cout << m << " " << n << std::endl;
+
+    board = board_t(n, std::vector<cell>(m));
+    initialize_board(*input);
 }
