@@ -2,21 +2,18 @@
 #include "render.hpp"
 
 #include <iostream>
-#include <sstream>
 #include <vector>
 
 int main() {
     using namespace new_base;
 
-    std::istringstream quick_example("3 1 0\n1 0 1\n");
-    std::istream* input = &std::cin;
-    if (!(std::cin >> m >> n >> qi)) {
-        input = &quick_example;
-        *input >> m >> n >> qi;
-    }
-    qi = 0;
-    std::cout << m << " " << n << std::endl;
+    const std::vector<std::vector<int>> puzzle = {
+        {1, 0, 1}
+    };
 
-    board = board_t(n, std::vector<cell>(m));
-    initialize_board(*input);
+    const Board board(puzzle);
+
+    std::cout << "Puzzle grid:\n";
+    print_board(board);
+    std::cout << "Islands found: " << board.island_count() << '\n';
 }

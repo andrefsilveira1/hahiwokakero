@@ -2,8 +2,6 @@
 
 #include "cell.hpp"
 
-#include <map>
-#include <iosfwd>
 #include <utility>
 #include <vector>
 
@@ -11,14 +9,29 @@ namespace new_base {
 
 using board_t = std::vector<std::vector<cell>>;
 
-extern int n, m, qi;
-extern board_t board;
-extern std::map<cell, std::vector<cell>> adj_list;
-extern std::vector<std::pair<cell, cell>> edg_list;
+class Board {
+public:
+    explicit Board(const std::vector<std::vector<int>>& values);
 
-bool are_same_line(cell c1, cell c2);
-bool are_same_collum(cell c1, cell c2);
-void connect_cells(cell& c1, cell& c2);
-void initialize_board(std::istream& input);
+    int rows() const;
+    int columns() const;
+    int island_count() const;
+
+    cell& at(int row, int column);
+    const cell& at(int row, int column) const;
+    const std::vector<std::pair<cell, cell>>& edges() const;
+
+    void connect_cells(cell& first, cell& second);
+
+private:
+    board_t cells_;
+    int island_count_ = 0;
+    std::vector<std::pair<cell, cell>> edges_;
+
+    void initialize();
+};
+
+bool are_same_line(cell first, cell second);
+bool are_same_collum(cell first, cell second);
 
 } // namespace new_base

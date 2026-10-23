@@ -1,7 +1,5 @@
 #include "render.hpp"
 
-#include "board.hpp"
-
 #include <cstdio>
 #include <iostream>
 #include <string>
@@ -20,7 +18,7 @@ void print_cell_info(cell c) {
 
 void print_cell(cell c) {
     if (c.is_island()) {
-        std::cout << board[c.cd.x][c.cd.y].init_val << " ";
+        std::cout << c.init_val << "  ";
     } else {
         std::vector<std::string> switch_line(6);
         switch_line[NO_LINE] = " ";
@@ -34,18 +32,19 @@ void print_cell(cell c) {
     }
 }
 
-void print_board() {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            print_cell(board[i][j]);
+void print_board(const Board& board) {
+    for (int row = 0; row < board.rows(); row++) {
+        for (int column = 0; column < board.columns(); column++) {
+            print_cell(board.at(row, column));
         }
         std::cout << std::endl;
     }
 }
 
-void print_edg_list() {
-    std::cout << qi << " " << static_cast<int>(edg_list.size()) << std::endl;
-    for (auto e : edg_list) {
+void print_edg_list(const Board& board) {
+    const auto& edges = board.edges();
+    std::cout << board.island_count() << " " << static_cast<int>(edges.size()) << std::endl;
+    for (const auto& e : edges) {
         std::printf("%d %d %d %d\n", e.first.cd.x, e.first.cd.y,
                     e.second.cd.x, e.second.cd.y);
     }

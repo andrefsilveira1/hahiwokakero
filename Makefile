@@ -3,7 +3,7 @@ CXXFLAGS ?= -std=c++17 -Wall -Wextra -Wpedantic
 CPPFLAGS ?= -Iinclude
 
 TARGET := hashi
-SOURCES := src/new_base.cpp src/board.cpp src/cell.cpp src/render.cpp
+SOURCES := src/main.cpp src/board.cpp src/cell.cpp src/render.cpp
 OBJECTS := $(SOURCES:.cpp=.o)
 DEPENDS := $(OBJECTS:.o=.d)
 
