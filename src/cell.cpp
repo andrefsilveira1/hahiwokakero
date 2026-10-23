@@ -10,15 +10,15 @@ coord::coord(int m_x, int m_y) : x(m_x), y(m_y) {}
 cell::cell() : init_val(0), val(0), line(NO_LINE) {}
 cell::cell(int v) : val(v) {}
 
-bool cell::is_island() {
+bool cell::is_island() const {
     return is_open_island() || is_closed_island();
 }
 
-bool cell::is_open_island() {
+bool cell::is_open_island() const {
     return val >= 1 && val <= 8;
 }
 
-bool cell::is_closed_island() {
+bool cell::is_closed_island() const {
     return val == -1;
 }
 

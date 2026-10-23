@@ -16,6 +16,9 @@ public:
     int rows() const;
     int columns() const;
     int island_count() const;
+    int max_edges() const;
+    int count_edges() const;
+    int value_function() const;
 
     cell& at(int row, int column);
     const cell& at(int row, int column) const;

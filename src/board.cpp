@@ -43,6 +43,35 @@ int Board::island_count() const {
     return island_count_;
 }
 
+int Board::max_edges() const {
+    int max_edges = 0;
+    for(int i = 0; i < rows(); i++){
+        for(int j = 0; j < columns(); j++){
+            if(cells_[i][j].is_island()){
+                max_edges += cells_[i][j].init_val;
+            }
+        }
+    }
+    return max_edges;
+}
+
+int Board::count_edges() const {
+    int sum = 0;
+    for(int i = 0; i < rows(); i++){
+        for(int j = 0; j < columns(); j++){
+            if(cells_[i][j].is_open_island()){
+                sum += cells_[i][j].val;
+            }
+        }
+    }
+
+    return sum;
+}
+
+int Board::value_function() const {
+    return max_edges() - count_edges();
+}
+
 cell& Board::at(int row, int column) {
     return cells_[row][column];
 }

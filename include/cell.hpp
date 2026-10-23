@@ -32,9 +32,9 @@ struct cell {
     cell();
     cell(int v);
 
-    bool is_island();
-    bool is_open_island();
-    bool is_closed_island();
+    bool is_island() const;
+    bool is_open_island() const;
+    bool is_closed_island() const;
     int qnt_adj();
     void decrease_val();
     bool add_line(int dir);
